@@ -1,7 +1,7 @@
 const express = require('express');
-const app = express;
+const app = express();
 require('dotenv').config();
-const mongoose = require('require');
+const mongoose = require('mongoose');
 const PORT  = process.env.PORT;
 const uri = process.env.MONGO_URI;
 
@@ -16,4 +16,4 @@ mongoose.connect(uri).then(
            console.log(`Connected to port ${PORT}`);
         });
     }
-).catch((err) =>{ console.log(`Error: ${error}`)});
+).catch((err) =>{ console.log(`Error: ${err}`)});
