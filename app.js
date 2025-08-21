@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const PORT  = process.env.PORT;
 const uri = process.env.MONGO_URI;
 const ejs = require('ejs');
+const {readData, writeData} = require('./utils/file.js');
+
 
 // setup the view engine
 app.set('view engine', 'ejs');
@@ -20,9 +22,10 @@ app.get('/home', (req, res) => {
 });
 
 //api endpoint for exposing the resource
-app.get('/api/v1/users',(req,res) => {
+app.get('/api/v1/users',async (req,res) => {
     try {
-
+       const data = await readData();
+        res.status(200).send(data);
     }catch(error){
         res.status(500).send(`Internal Saerver Error: ${error.message}`)
     }
