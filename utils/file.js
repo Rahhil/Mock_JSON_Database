@@ -1,29 +1,21 @@
 const fs = require('fs').promises;
-const filePath = './dataabse.json';
+const filePath = './database.json';
 
-async function readData() {
+
+async function readData(){
     try{
-    const data = await fs.readfile(filePath, "utf-8");
-    return JSON.parse(data);    
-
-        
+      const data = await fs.readFile(filePath, "utf-8");
+      return JSON.parse(data);  
     }catch (error){
-
         console.error("Error reading file:", error);
-
     }
 }
 
-async function writeData(data) {
+async function writeData(data){
     try{
-    await fs.writefile(filePath, JSON.stringify(data, null, 2));
-    return JSON.parse(data);    
-
-        
-    }catch (error){
-
+      await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+    } catch (error){
         console.error("Error reading file:", error);
-
     }
 }
 
